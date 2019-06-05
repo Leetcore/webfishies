@@ -15,14 +15,43 @@ body {
   background-size: 100%;
 }
 
+.underground {
+  margin: 0 auto;
+  width: 120%;
+  height: 200px;
+  bottom: 0px;
+  left: -60px;
+  position: absolute;
+  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d; 
+  -moz-transform-style: preserve-3d;
+  transform: rotateX(45deg);
+  background: url('https://cdn.glitch.com/28094231-6f5f-4454-8cf5-27a652c30413%2Fground.jpg');
+
+}
+
+.flip {
+  transform: scaleX(-1);
+}
+
 .plant {
-  drop-shadow: 5px 5px 5px #333;
+  font-size: 500%;
+  text-shadow: 50px 50px 50px #333;
   position: absolute;
   bottom: 20px;
 }
 
+.fish {
+  position: absolute;
+}
+
+.slow {
+  transform-duration: 
+}
+
 #bowl {
+  perspective: 1000px;
   width: 100%;
   height: 100%;
-  position: fixed;
+  position: relative;
 }
