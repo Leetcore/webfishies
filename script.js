@@ -40,8 +40,8 @@ function addFishs() {
       createEmoji('🐙', 500);
       createEmoji('🐡', 250);
       // bottom stuff
-      createEmoji('🦀', 250, 'ground', 0, height - 300);
-      createEmoji('🐌', 200, 'ground', 0, height - 280);
+      createEmoji('🦀', 250, 'ground', 0, height - 250);
+      createEmoji('🐌', 200, 'ground', 0, height - 200);
     }, random(1000, 5000));
   }
 
