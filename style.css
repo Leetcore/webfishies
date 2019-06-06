@@ -6,6 +6,7 @@ html, body {
 }
 
 body {
+  overflow: hidden;
   font-family: "Benton Sans", "Helvetica Neue", helvetica, arial, sans-serif;
   background: #54A8F9;
   background-image: radial-gradient( closest-corner at 20% 90%, #0d84f6, transparent ), radial-gradient( closest-corner at -10% 20%, #134bc4, transparent ), radial-gradient(closest-corner at 15% 90%, #023a98, transparent), radial-gradient( closest-corner at 20% 55%, #c8f7f4, #54A8F9);
