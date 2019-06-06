@@ -4,6 +4,11 @@ const underground = document.getElementById('underground');
 let width = document.body.clientWidth;
 let height = document.body.clientHeight;
 
+function resize() {
+  width = document.body.clientWidth;
+  height = document.body.clientHeight;
+}
+
 function setup() {
   document.getElementById('underground').innerHTML = '';
   var placeRandomPlantCounter = random(1, 3);
@@ -18,9 +23,6 @@ function setup() {
     placePlant('🌱', random(450, 550));
     placePlant('🌿', random(350, 400));
   }
-
-  width = document.body.clientWidth;
-  height = document.body.clientHeight;
 }
 
 function addFishs() {
