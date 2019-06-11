@@ -36,15 +36,11 @@ body {
   z-index: -1;
   margin: 0 auto;
   width: 120%;
-  height: 50%;
+  height: 40%;
   bottom: -5px;
   left: -10%;
   box-shadow: 0px 0px 100px #DDD;
   position: absolute;
-  transform-style: preserve-3d;
-  -webkit-transform-style: preserve-3d;
-  -moz-transform-style: preserve-3d;
-  transform: rotateX(45deg);
   background: url('https://cdn.glitch.com/28094231-6f5f-4454-8cf5-27a652c30413%2Fground.jpg');
 }
 

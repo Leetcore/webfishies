@@ -3,6 +3,11 @@ const bowl = document.getElementById('bowl');
 const underground = document.getElementById('underground');
 let width = document.body.clientWidth;
 let height = document.body.clientHeight;
+setTimeout(() => {
+  width = document.body.clientWidth;
+  height = document.body.clientHeight;
+}, 1000);
+
 
 function resize() {
   width = document.body.clientWidth;
@@ -11,7 +16,7 @@ function resize() {
 
 function setup() {
   document.getElementById('underground').innerHTML = '';
-  var placeRandomPlantCounter = random(1, 3);
+  var placeRandomPlantCounter = random(3, 5);
   for (var index = 0; index < placeRandomPlantCounter; index++) {
     placePlant('🐚', random(150, 300));
     placePlant('🌸', random(150, 300));
@@ -19,9 +24,9 @@ function setup() {
     placePlant('🍄', random(80, 120));
   }
 
-  for (var index = 0; index < 20; index++) {
+  for (var index = 0; index < 15; index++) {
     placePlant('🌱', random(450, 550));
-    placePlant('🌿', random(350, 400));
+    placePlant('🌿', random(350, 600));
   }
 }
 
@@ -56,7 +61,7 @@ setup();
 addFishs();
 update();
 
-// game timer
+// timer
 function update() {
   // move fishes
   var allFish = document.querySelectorAll('.fish');
@@ -92,12 +97,15 @@ function update() {
     }
   });
 
-  // move droplets down
+  // move water down
   var droplets = document.querySelectorAll('.droplet');
   droplets.forEach(drop => {
     if (drop.data.moving === false) {
       drop.style.top = (height + 10) +'px';
       drop.data.moving = true;
+      setTimeout(() => {
+        drop.remove();
+      }, 60 * 1000);
     }
     if (drop.offsetTop >= height) {
       drop.remove();
@@ -117,7 +125,7 @@ function placePlant(emoji, size) {
   underground.insertAdjacentHTML('beforeend', `<div
     class="plant"
     id="${id}"
-    style="left: ${random(-50, width)}px;
+    style="left: ${random(-50, width + 50)}px;
       bottom: ${random(1, 90)}%;
       font-size: ${size || 500}%;">
     ${emoji}
@@ -169,11 +177,7 @@ function random(min, max) {
   return Math.floor(Math.random() * (max - min +1)) + min;
 }
 
+// TODO: baby making stuff
 function isCollide(a, b) {
-    return !(
-        ((a.y + a.height) < (b.y)) ||
-        (a.y > (b.y + b.height)) ||
-        ((a.x + a.width) < b.x) ||
-        (a.x > (b.x + b.width))
-    );
+    // TODO
 }
