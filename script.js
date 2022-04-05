@@ -1,53 +1,60 @@
 // create stuff
 const bowl = document.getElementById('bowl');
 const underground = document.getElementById('underground');
-let width = document.body.clientWidth;
-let height = document.body.clientHeight;
+var width = document.body.clientWidth;
+var height = document.body.clientHeight;
+
 setTimeout(() => {
-  width = document.body.clientWidth;
-  height = document.body.clientHeight;
+  if (document.body.clientWidth !== width) {
+      width = document.body.clientWidth;
+  }
+  if (document.body.clientHeight !== height) {
+    height = document.body.clientHeight;
+  }
 }, 1000);
 
 
 function resize() {
-  width = document.body.clientWidth;
-  height = document.body.clientHeight;
+  if (document.body.clientWidth !== width) {
+      width = document.body.clientWidth;
+  }
+  if (document.body.clientHeight !== height) {
+    height = document.body.clientHeight;
+  }
 }
 
 function setup() {
   document.getElementById('underground').innerHTML = '';
-  var placeRandomPlantCounter = random(3, 5);
+  var placeRandomPlantCounter = random(3, 8);
   for (var index = 0; index < placeRandomPlantCounter; index++) {
-    placePlant('🐚', random(150, 300));
-    placePlant('🌸', random(150, 300));
-    placePlant('☘️', random(100, 200));
-    placePlant('🍄', random(80, 120));
+    placePlant('🐚', random(300, 500));
+    placePlant('🌸', random(300, 400));
+    placePlant('☘️', random(300, 400));
+    placePlant('🍄', random(100, 300));
+  }
+  
+  for (var index = 0; index < 3; index++) {
+    createEmoji('🦀', 400, 'ground', 500, height - 200);
+    createEmoji('🐌', 200, 'ground', 500, height - 200);
   }
 
-  for (var index = 0; index < 15; index++) {
-    placePlant('🌱', random(450, 550));
-    placePlant('🌿', random(350, 600));
+  for (var index = 0; index < 10; index++) {
+    placePlant('🌱', random(1000, 1500),);
+    placePlant('🌿', random(800, 1500));
   }
 }
 
 function addFishs() {
-  // normal fishies
-  for (var index = 0; index < 10; index++) {
-    setTimeout(() => {
-      createEmoji('🐟', random(200, 300));
-      createEmoji('🐠', random(200, 450));
-    }, random(0, 3000));
-  }
-
   // special ones
   for (var index = 0; index < 3; index++) {
-    setTimeout(() => {
-      createEmoji('🐙', 500);
-      createEmoji('🐡', 250);
-      // bottom stuff
-      createEmoji('🦀', 250, 'ground', 0, height - 250);
-      createEmoji('🐌', 200, 'ground', 0, height - 200);
-    }, random(1000, 5000));
+    createEmoji('🐙', 800);
+    createEmoji('🐡', 400);
+  }
+  
+  // normal fishies
+  for (var index = 0; index < 15; index++) {
+    createEmoji('🐟', random(200, 400));
+    createEmoji('🐠', random(300, 500));
   }
 
   // save props
@@ -86,7 +93,7 @@ function update() {
     if (troup.data.moving === false) {
       // new position
       var left = parseInt(troup.style.left) + random(-200, 200);
-      var top = parseInt(troup.style.top) + random(-10, 10);
+      var top = parseInt(troup.style.top) + random(-50, 50);
       automaticFlip(troup, left, true);
       troup.style.left = left +'px';
       troup.style.top = top +'px';
@@ -117,13 +124,13 @@ function update() {
     createEmoji('💧', random(20, 500), 'droplet', random(0, width), -50);
   }
 
-  setTimeout(update, 1000);
+  setTimeout(update, 3 * 1000);
 }
 
-function placePlant(emoji, size) {
+function placePlant(emoji, size, css) {
   var id = random(0, 99999999);
   underground.insertAdjacentHTML('beforeend', `<div
-    class="plant"
+    class="${css || 'plant'}"
     id="${id}"
     style="left: ${random(-50, width + 50)}px;
       bottom: ${random(1, 90)}%;
@@ -131,7 +138,6 @@ function placePlant(emoji, size) {
     ${emoji}
   </div>`);
 
-  // add speed
   var plant = document.getElementById(id);
   if (random(0, 1) == 0) {
     plant.classList.add('flip');
@@ -175,9 +181,4 @@ function random(min, max) {
   min = Math.ceil(min);
   max = Math.floor(max);
   return Math.floor(Math.random() * (max - min +1)) + min;
-}
-
-// TODO: baby making stuff
-function isCollide(a, b) {
-    // TODO
 }
